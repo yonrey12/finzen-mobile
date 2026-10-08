@@ -5,6 +5,7 @@ const NAV_LINKS = [
   { href: "/index" as const, match: "/", label: "Dashboard" },
   { href: "/transactions/index" as const, match: "/transactions", label: "Movimientos" },
   { href: "/accounts/index" as const, match: "/accounts", label: "Cuentas" },
+  { href: "/debts/index" as const, match: "/debts", label: "Deudas" },
 ];
 
 export function NavBar() {
