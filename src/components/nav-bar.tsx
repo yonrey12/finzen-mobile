@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { href: "/debts/index" as const, match: "/debts", label: "Deudas" },
   { href: "/goals/index" as const, match: "/goals", label: "Metas" },
   { href: "/budgets/index" as const, match: "/budgets", label: "Presupuesto" },
+  { href: "/recurring/index" as const, match: "/recurring", label: "Recurrentes" },
 ];
 
 export function NavBar() {
