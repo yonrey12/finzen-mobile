@@ -193,7 +193,7 @@ export default function DashboardScreen() {
         <View className="gap-3">
           <View className="flex-row items-center justify-between">
             <Text className="text-sm font-semibold text-ink dark:text-white">Próximos pagos</Text>
-            <Link href="/recurring/index" className="text-sm font-medium text-accent">
+            <Link href="/recurring" className="text-sm font-medium text-accent">
               Ver todo
             </Link>
           </View>
@@ -221,7 +221,7 @@ export default function DashboardScreen() {
       <View className="gap-3">
         <View className="flex-row items-center justify-between">
           <Text className="text-sm font-semibold text-ink dark:text-white">Últimos movimientos</Text>
-          <Link href="/transactions/index" className="text-sm font-medium text-accent">
+          <Link href="/transactions" className="text-sm font-medium text-accent">
             Ver todo
           </Link>
         </View>

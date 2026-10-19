@@ -74,7 +74,7 @@ export function TransactionForm({
   today: string;
   defaultValues?: TransactionDefaultValues;
   submitLabel?: string;
-  onSubmit: (payload: TransactionPayload) => Promise<{ error?: string } | void>;
+  onSubmit: (payload: TransactionPayload) => Promise<{ error?: string; queued?: boolean } | void>;
 }) {
   const [type, setType] = useState<TransactionType>(defaultValues?.type ?? "expense");
   const [amount, setAmount] = useState(
@@ -93,6 +93,7 @@ export function TransactionForm({
   const [description, setDescription] = useState(defaultValues?.description ?? "");
   const [noteOpen, setNoteOpen] = useState(Boolean(defaultValues?.description));
   const [error, setError] = useState<string | null>(null);
+  const [queuedMessage, setQueuedMessage] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
   const filteredCategories = categories.filter((c) => c.kind === type);
@@ -107,8 +108,19 @@ export function TransactionForm({
     setNoteOpen(false);
   }
 
+  function resetForCapture() {
+    setType("expense");
+    setAmount("");
+    setCategoryId(categories.find((c) => c.kind === "expense")?.id ?? "");
+    setTransferAccountId("");
+    setOccurredOn(today);
+    setDescription("");
+    setNoteOpen(false);
+  }
+
   async function handleSubmit() {
     setError(null);
+    setQueuedMessage(null);
 
     const amountNumber = Number(amount);
     if (!amountNumber || amountNumber <= 0) {
@@ -143,7 +155,14 @@ export function TransactionForm({
       description: description.trim() || null,
     });
     setSubmitting(false);
-    if (result?.error) setError(result.error);
+    if (result?.error) {
+      setError(result.error);
+      return;
+    }
+    if (result?.queued) {
+      setQueuedMessage("Guardado en tu celular. Se subirá solo cuando tengas conexión.");
+      resetForCapture();
+    }
   }
 
   return (
@@ -228,6 +247,12 @@ export function TransactionForm({
       {error ? (
         <View className="rounded-lg border border-danger/20 bg-danger/10 px-3 py-2">
           <Text className="text-sm text-danger">{error}</Text>
+        </View>
+      ) : null}
+
+      {queuedMessage ? (
+        <View className="rounded-lg border border-income/20 bg-income/10 px-3 py-2">
+          <Text className="text-sm text-income">{queuedMessage}</Text>
         </View>
       ) : null}
 

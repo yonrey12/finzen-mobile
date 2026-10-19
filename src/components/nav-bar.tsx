@@ -2,13 +2,13 @@ import { Link, usePathname } from "expo-router";
 import { ScrollView, Text } from "react-native";
 
 const NAV_LINKS = [
-  { href: "/index" as const, match: "/", label: "Dashboard" },
-  { href: "/transactions/index" as const, match: "/transactions", label: "Movimientos" },
-  { href: "/accounts/index" as const, match: "/accounts", label: "Cuentas" },
-  { href: "/debts/index" as const, match: "/debts", label: "Deudas" },
-  { href: "/goals/index" as const, match: "/goals", label: "Metas" },
-  { href: "/budgets/index" as const, match: "/budgets", label: "Presupuesto" },
-  { href: "/recurring/index" as const, match: "/recurring", label: "Recurrentes" },
+  { href: "/" as const, label: "Dashboard" },
+  { href: "/transactions" as const, label: "Movimientos" },
+  { href: "/accounts" as const, label: "Cuentas" },
+  { href: "/debts" as const, label: "Deudas" },
+  { href: "/goals" as const, label: "Metas" },
+  { href: "/budgets" as const, label: "Presupuesto" },
+  { href: "/recurring" as const, label: "Recurrentes" },
 ];
 
 export function NavBar() {
@@ -22,7 +22,7 @@ export function NavBar() {
     >
       {NAV_LINKS.map((link) => {
         const isActive =
-          pathname === link.match || pathname.startsWith(`${link.match}/`);
+          pathname === link.href || pathname.startsWith(`${link.href}/`);
         return (
           <Link key={link.href} href={link.href} asChild>
             <Text
