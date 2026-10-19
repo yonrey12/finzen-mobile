@@ -7,6 +7,7 @@ import { FREQUENCY_OPTIONS, FREQUENCY_LABELS } from "@/lib/recurring";
 import { formatCurrency } from "@/lib/format";
 import { todayInHonduras } from "@/lib/date";
 import { TextField } from "@/components/text-field";
+import { DateField } from "@/components/date-field";
 
 type Account = { id: string; name: string };
 type Category = { id: string; name: string; kind: "income" | "expense" };
@@ -305,11 +306,7 @@ export default function RecurringScreen() {
           </View>
         </View>
 
-        <TextField
-          label="Próxima fecha (AAAA-MM-DD)"
-          value={nextOccurrence}
-          onChangeText={setNextOccurrence}
-        />
+        <DateField label="Próxima fecha" value={nextOccurrence} onChange={setNextOccurrence} />
 
         <TextField
           label="Nota (opcional)"

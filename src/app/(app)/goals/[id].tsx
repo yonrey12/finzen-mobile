@@ -5,6 +5,7 @@ import { ActivityIndicator, Pressable, ScrollView, Text, View } from "react-nati
 import { supabase } from "@/lib/supabase";
 import { formatCurrency } from "@/lib/format";
 import { TextField } from "@/components/text-field";
+import { DateField } from "@/components/date-field";
 
 type Goal = {
   id: string;
@@ -171,10 +172,11 @@ export default function EditGoalScreen() {
           onChangeText={setTargetAmount}
           keyboardType="decimal-pad"
         />
-        <TextField
-          label="Fecha objetivo (AAAA-MM-DD, opcional)"
+        <DateField
+          label="Fecha objetivo (opcional)"
           value={targetDate}
-          onChangeText={setTargetDate}
+          onChange={setTargetDate}
+          clearable
         />
 
         {error ? (

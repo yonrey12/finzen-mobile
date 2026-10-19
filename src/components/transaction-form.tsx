@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ActivityIndicator, Pressable, Text, View } from "react-native";
 
 import { TextField } from "@/components/text-field";
+import { DateField } from "@/components/date-field";
 
 type Account = { id: string; name: string };
 type Category = { id: string; name: string; kind: "income" | "expense" };
@@ -224,7 +225,7 @@ export function TransactionForm({
         </>
       )}
 
-      <TextField label="Fecha (AAAA-MM-DD)" value={occurredOn} onChangeText={setOccurredOn} />
+      <DateField label="Fecha" value={occurredOn} onChange={setOccurredOn} />
 
       {type !== "transfer" && !showNote && (
         <Pressable onPress={() => setNoteOpen(true)} className="self-start">

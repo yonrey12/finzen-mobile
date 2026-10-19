@@ -5,6 +5,7 @@ import { ActivityIndicator, Pressable, ScrollView, Switch, Text, View } from "re
 import { supabase } from "@/lib/supabase";
 import { FREQUENCY_OPTIONS } from "@/lib/recurring";
 import { TextField } from "@/components/text-field";
+import { DateField } from "@/components/date-field";
 
 type Account = { id: string; name: string };
 type Category = { id: string; name: string; kind: "income" | "expense" };
@@ -233,11 +234,7 @@ export default function EditRecurringScreen() {
           </View>
         </View>
 
-        <TextField
-          label="Próxima fecha (AAAA-MM-DD)"
-          value={nextOccurrence}
-          onChangeText={setNextOccurrence}
-        />
+        <DateField label="Próxima fecha" value={nextOccurrence} onChange={setNextOccurrence} />
 
         <TextField label="Nota (opcional)" value={description} onChangeText={setDescription} />
 

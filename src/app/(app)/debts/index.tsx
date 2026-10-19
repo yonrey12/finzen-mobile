@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { DEBT_DIRECTIONS } from "@/lib/debts";
 import { formatCurrency } from "@/lib/format";
 import { TextField } from "@/components/text-field";
+import { DateField } from "@/components/date-field";
 
 type Debt = {
   id: string;
@@ -247,12 +248,7 @@ export default function DebtsScreen() {
             />
           </View>
           <View className="flex-1">
-            <TextField
-              label="Vencimiento (AAAA-MM-DD)"
-              value={dueDate}
-              onChangeText={setDueDate}
-              placeholder="Opcional"
-            />
+            <DateField label="Vencimiento (opcional)" value={dueDate} onChange={setDueDate} clearable />
           </View>
         </View>
 
